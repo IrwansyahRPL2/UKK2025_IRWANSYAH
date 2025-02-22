@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			display: flex;
+			height: 100vh;
+			justify-content: center;
+			align-items: center;
+		}
+		.content{
+			border: 1px solid black;
+			padding: 30px;
+			width: 300px;
+			background-color:black ;
+			border-radius: 10px;
+		}
+		.button{
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 15px;
+		}
+		input{
+			width: 100%;
+			height: 60px;
+			margin-bottom: 15px;
+			font-size: 40px;
+			text-align: right;
+			padding-right: 5px;
+			background-color: gray;
+			color: white;
+			outline: none;
+			box-sizing: border-box;
+			;
+		}
+		button{
+			height: 50px;
+			width: auto;
+			font-size: 20px;
+			border-radius: 10px;	
+		}
+		.nilai{
+			background-color: blue;
+			color: white;
+		}
+		button:hover{
+			background-color: orange;
+			color: white;
+		}
+	</style>
+	<script type="text/javascript">
+		function nilai(val){
+			document.getElementById('inputan').value +=val;
+		}
+		function hapusSemua(){
+			document.getElementById('inputan').value='';
+		}
+		function hapusSatu(){
+			document.getElementById('inputan').value=document.getElementById('inputan').value.slice(0,-1);
+		}
+		function hasil(){
+
+			let nilai1=document.getElementById('inputan');
+			if(nilai1.value.includes('//')){
+				nilai1.value='error';
+				return;
+			}
+			if(nilai1.value.includes('/0')){
+				nilai1.value='tidak bisa';
+				return;
+			}
+			
+			try{
+				nilai1.value=eval(nilai1.value.replaceAll('%','/100'));
+			}catch{
+				nilai1.value='error';
+			}
+		}
+	</script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<div class="content">
+		<input type="text" id="inputan"  readonly>
+		<div class="button">
+			<button class="operator" onclick="hapusSemua()">AC</button>
+			<button class="operator" onclick="hapusSatu()">DEL</button>
+			<button class="operator" onclick="nilai('+')">+</button>
+			<button class="operator" onclick="nilai('/')">/</button>
+			<button class="nilai" onclick="nilai('7')">7</button>
+			<button class="nilai" onclick="nilai('8')">8</button>
+			<button class="nilai" onclick="nilai('9')">9</button>
+			<button class="operator" onclick="nilai('-')">-</button>
+			<button class="nilai" onclick="nilai('4')">4</button>
+			<button class="nilai" onclick="nilai('5')">5</button>
+			<button class="nilai" onclick="nilai('6')">6</button>
+			<button class="operator" onclick="nilai('*')">*</button>
+			<button class="nilai" onclick="nilai('1')">1</button>
+			<button class="nilai" onclick="nilai('2')">2</button>
+			<button class="nilai" onclick="nilai('3')">3</button>
+			<button class="operator" onclick="nilai('%')">%</button>
+			<button class="nilai" onclick="nilai('0')">0</button>
+			<button class="nilai" onclick="nilai('00')">00</button>
+			<button class="nilai" onclick="nilai('.')">.</button>
+			<button class="operator" onclick="hasil()">=</button>
+		</div>
+	</div>
+</body>
+</html>
