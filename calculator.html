@@ -2,29 +2,33 @@
 <html>
 <head>
 	<style type="text/css">
-		*{
+		* {
 			padding: 0;
 			margin: 0;
 		}
-		body{
+
+		body {
 			display: flex;
 			height: 100vh;
 			justify-content: center;
 			align-items: center;
 		}
-		.content{
+
+		.content {
 			border: 1px solid black;
 			padding: 30px;
 			width: 300px;
-			background-color:black ;
+			background-color: black;
 			border-radius: 10px;
 		}
-		.button{
+
+		.button {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			gap: 15px;
 		}
-		input{
+
+		input {
 			width: 100%;
 			height: 60px;
 			margin-bottom: 15px;
@@ -37,47 +41,54 @@
 			box-sizing: border-box;
 			;
 		}
-		button{
+
+		button {
 			height: 50px;
 			width: auto;
 			font-size: 20px;
-			border-radius: 10px;	
+			border-radius: 10px;
 		}
-		.nilai{
+
+		.nilai {
 			background-color: blue;
 			color: white;
 		}
-		button:hover{
+
+		button:hover {
 			background-color: orange;
 			color: white;
 		}
 	</style>
 	<script type="text/javascript">
-		function nilai(val){
-			document.getElementById('inputan').value +=val;
+		function nilai(val) {
+			document.getElementById('inputan').value += val;
 		}
-		function hapusSemua(){
-			document.getElementById('inputan').value='';
+		function hapusSemua() {
+			document.getElementById('inputan').value = '';
 		}
-		function hapusSatu(){
-			document.getElementById('inputan').value=document.getElementById('inputan').value.slice(0,-1);
+		function hapusSatu() {
+			document.getElementById('inputan').value = document.getElementById('inputan').value.slice(0, -1);
 		}
-		function hasil(){
+		function hasil() {
 
-			let nilai1=document.getElementById('inputan');
-			if(nilai1.value.includes('//')){
-				nilai1.value='error';
+			let nilai1 = document.getElementById('inputan');
+			if (nilai1.value.includes('//')) {
+				nilai1.value = 'error';
 				return;
 			}
-			if(nilai1.value.includes('/0')){
-				nilai1.value='tidak bisa';
+			if (nilai1.value.includes('/0')) {
+				nilai1.value = 'kesalahan';
 				return;
 			}
-			
-			try{
-				nilai1.value=eval(nilai1.value.replaceAll('%','/100'));
-			}catch{
-				nilai1.value='error';
+			if (nilai1.value.includes("*")) {
+				nilai1.value = 'error';
+				return;
+			}
+
+			try {
+				nilai1.value = eval(nilai1.value.replaceAll('%', '/100'));
+			} catch {
+				nilai1.value = 'error';
 			}
 		}
 	</script>
@@ -86,9 +97,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 </head>
+
 <body>
 	<div class="content">
-		<input type="text" id="inputan"  readonly>
+		<input type="text" id="inputan" readonly>
 		<div class="button">
 			<button class="operator" onclick="hapusSemua()">AC</button>
 			<button class="operator" onclick="hapusSatu()">DEL</button>
@@ -113,4 +125,5 @@
 		</div>
 	</div>
 </body>
+
 </html>
